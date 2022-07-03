@@ -1,17 +1,11 @@
 name: Hadolint
 on: pull_request
 jobs:
-  linter:
-    name: Linter Checks
-    runs-on: ubuntu
+  hadolint:
+    runs-on: ubuntu-20.04
+    name: "Hadolint"
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v2
-    - name: Check Dockerfile
-      uses: brpaz/hadolint-action@v2.0.0
-      with:
-        recursive: true
-        verbose: true
-    - uses: azure/container-scan@v0
-      with:
-        image-name: maauso/squid-armhf:squid5-latest
+      - uses: actions/checkout@v2
+      - uses: hadolint/hadolint-action@v2.0.0
+        with:
+          recursive: true
